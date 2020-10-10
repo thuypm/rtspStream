@@ -11,12 +11,12 @@ router.get('/', function(req, res, next) {
 router.post('/getRtspVideo', function(req, res, next) {
 console.log(req.body);
 //var cmd = "mkdir Newvideo";
-var cmd = 'ffmpeg -i "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov" -c copy -hls_time 2 -hls_wrap 5 "public/video/streaming.m3u8"';
+var cmd = 'ffmpeg -i "' +req.body.rtspLink+  '" -c copy -hls_time 2 -hls_wrap 5 "public/video/streaming.m3u8"';
 exec(cmd, function(error, stdout, stderr){
   if(error)
-  	throw error;
-
-  
+  	throw error
+  else
+  	console.log("stdout");  
 });
  	res.send("1");
 });
